@@ -1,6 +1,7 @@
 var bodyparser = require('body-parser');
 var appliance = require('../models/applianceModel.js');
 var user = require('../models/userModel.js');
+var fs= require('fs');
 
 module.exports = function(app){    
     app.use(bodyparser.json());
@@ -42,18 +43,20 @@ module.exports = function(app){
             if(err) throw err;
             if(ack[0]){
                 if(req.body.password==ack[0].password){
-                    console.log("switch");
-                    res.writeHead(301, {Location: '/htmlPages/switch.html'});
+                    var htmlFilename='switch.html';
                 }
                 else{
-                    console.log("wrong password");
-                    res.writeHead(301, {Location: '/htmlPages/login.html'});
+                    var htmlFilename='login.html';
+                    console.log("invalid password");
                 }
             }
             else{
+                var htmlFilename='login.html';
                 console.log("invalid user");
-                res.writeHead(301, {Location: '/htmlPages/login.html'});
             }
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            var readHtml = fs.createReadStream('./htmlPages/'+htmlFilename, 'utf8');
+            readHtml.pipe(res);
         });
     });
 
