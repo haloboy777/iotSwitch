@@ -3,9 +3,11 @@ var appliance = require('../models/applianceModel.js');
 var user = require('../models/userModel.js');
 var fs= require('fs');
 
-module.exports = function(app){    
+module.exports = function(app){   
+    app.use(bodyparser.urlencoded({
+        extended: true
+    }));
     app.use(bodyparser.json());
-
     app.get('/espdata', function(req, res){
         appliance.find({rid: "itsHarshRoom"}, function(err, ack){
             if(err) throw err;
