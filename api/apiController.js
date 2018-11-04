@@ -1,5 +1,5 @@
 var bodyparser = require('body-parser');
-var appliance = require('../models/lyuModel.js');
+var appliance = require('../models/applianceModel.js');
 
 module.exports = function(app){    
     app.use(bodyparser.json());
