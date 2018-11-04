@@ -1,16 +1,27 @@
 <html>
-<head><title>IOT Switch</title></head>
-<body>
-    <form action="https://iotswitchdiwali.herokuapp.com/login" method="POST" name="myForm">
-        <p>
-        User Name: 
-        <input type="text" name="username" id="uname">
-        </p> <p>
-        Password: 
-        <input type="text" name="password" id="pword">
-        </p><p>
-        <input value="Submit" type="submit" onclick="submitform()">
-        </p>
-    </form>
-</body>
+    <body>
+        <form name="loginForm" method="post" action="/login">
+			<table width="20%" bgcolor="0099CC" align="center">
+
+				<tr>
+					<td colspan=2><center><font size=4><b>HTML Login Page</b></font></center></td>
+				</tr>
+
+				<tr>
+					<td>Username:</td>
+					<td><input type="text" size=25 name="userid"></td>
+				</tr>
+
+				<tr>
+					<td>Password:</td>
+					<td><input type="Password" size=25 name="pwd"></td>
+				</tr>
+
+				<tr>
+					<td><input type="submit" value="Login"></td>
+				</tr>
+
+			</table>
+		</form>
+    </body>
 </html>
