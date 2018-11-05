@@ -83,13 +83,13 @@ module.exports = function(app){
             if(err) throw err;
             if(ack[0]){
                 switch(req.body.value){
-                    case "1": 
+                    case 1: 
                         if(ack[0].applianceState[0])
                             ack[0].applianceState[0]=false;
                         else
                             ack[0].applianceState[0]=true;
                         break;
-                    case "2": 
+                    case '2': 
                         if(ack[0].applianceState[1])
                             ack[0].applianceState[1]=false;
                         else
