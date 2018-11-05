@@ -8,6 +8,13 @@ module.exports = function(app){
         extended: true
     }));
     app.use(bodyparser.json());
+    
+    app.get('/', function(req, res){
+        res.writeHead(200, {'Content-Type': 'text/html'});
+            var readHtml = fs.createReadStream('./htmlPages/login.html', 'utf8');
+            readHtml.pipe(res);  
+    });
+
     app.get('/espdata', function(req, res){
         appliance.find({rid: "itsHarshRoom"}, function(err, ack){
             if(err) throw err;
@@ -45,15 +52,15 @@ module.exports = function(app){
             if(err) throw err;
             if(ack[0]){
                 if(req.body.password==ack[0].password){
-                    var htmlFilename='switch.html';
+                    var htmlFilename='switch.ejs';
                 }
                 else{
-                    var htmlFilename='login.html';
+                    var htmlFilename='login.ejs';
                     console.log("invalid password");
                 }
             }
             else{
-                var htmlFilename='login.html';
+                var htmlFilename='login.ejs';
                 console.log("invalid user");
             }
             res.writeHead(200, {'Content-Type': 'text/html'});
