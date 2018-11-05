@@ -19,7 +19,7 @@ module.exports = function(app){
         appliance.find({rid: "itsHarshRoom"}, function(err, ack){
             if(err) throw err;
             res.send(ack);
-        }).pretty();   
+        });   
     });
 
     app.get('/api', function(req, res){
@@ -81,7 +81,7 @@ module.exports = function(app){
         appliance.find({rid: "itsHarshRoom"}, function(err, ack){
             if(err) throw err;
             if(ack[0]){
-                switch(req.body.key){
+                switch(req.body.value){
                     case "1": 
                         if(ack[0].applianceState[0])
                             ack[0].applianceState[0]=false;
