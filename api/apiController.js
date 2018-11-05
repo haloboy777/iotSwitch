@@ -79,7 +79,6 @@ module.exports = function(app){
 
     app.post('/switch', function(req, res){
         appliance.find({rid: "itsHarshRoom"}, function(err, ack){
-            console.log(req.body.value);
             if(err) throw err;
             if(ack[0]){
                 switch(req.body.value){
