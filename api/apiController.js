@@ -79,10 +79,10 @@ module.exports = function(app){
 
     app.post('/switch', function(req, res){
         appliance.find({rid: "itsHarshRoom"}, function(err, ack){
-            console.log(req.body.value);
+            console.log(req.body.key);
             if(err) throw err;
             if(ack[0]){
-                switch(req.body.value){
+                switch(req.body.key){
                     case 1: 
                         if(ack[0].applianceState[0])
                             ack[0].applianceState[0]=false;
