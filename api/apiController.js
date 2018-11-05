@@ -8,6 +8,13 @@ module.exports = function(app){
         extended: true
     }));
     app.use(bodyparser.json());
+	
+	app.get('/',function(req,res,next){
+            var readHtml = fs.createReadStream('./htmlPages/'+'login.html', 'utf8');
+            readHtml.pipe(res);
+	});
+	
+	
     app.get('/espdata', function(req, res){
         appliance.find({rid: "itsHarshRoom"}, function(err, ack){
             if(err) throw err;
