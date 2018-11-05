@@ -76,4 +76,45 @@ module.exports = function(app){
         });
     });
 
+
+    app.post('/switch', function(req, res){
+        appliance.find({rid: "itsHarshRoom"}, function(err, ack){
+            if(err) throw err;
+            console.log(ack[0]);
+            if(ack[0]){
+                console.log(ack[0].applianceState[0]);
+                switch(req.body.value){
+                    case "1": 
+                        if(ack[0].applianceState[0])
+                            ack[0].applianceState[0]=false;
+                        else
+                            ack[0].applianceState[0]=true;
+                        break;
+                    case "2": 
+                        if(ack[0].applianceState[1])
+                            ack[0].applianceState[1]=false;
+                        else
+                            ack[0].applianceState[1]=true;
+                        break;
+                    case "3": 
+                        if(ack[0].applianceState[2])
+                            ack[0].applianceState[2]=false;
+                        else
+                            ack[0].applianceState[2]=true;
+                        break;
+                    case "4": 
+                        if(ack[0].applianceState[3])
+                            ack[0].applianceState[3]=false;
+                        else
+                            ack[0].applianceState[3]=true;
+                        break;
+                }
+                console.log(ack[0].applianceState[0]);
+            }
+            appliance.updateOne(ack[0],function(err, ack2){
+                if(err) throw err;
+                res.send(ack2);
+            });
+        }); 
+    });
 }
