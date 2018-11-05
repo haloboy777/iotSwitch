@@ -52,15 +52,15 @@ module.exports = function(app){
             if(err) throw err;
             if(ack[0]){
                 if(req.body.password==ack[0].password){
-                    var htmlFilename='switch.ejs';
+                    var htmlFilename='switch.html';
                 }
                 else{
-                    var htmlFilename='login.ejs';
+                    var htmlFilename='login.html';
                     console.log("invalid password");
                 }
             }
             else{
-                var htmlFilename='login.ejs';
+                var htmlFilename='login.html';
                 console.log("invalid user");
             }
             res.writeHead(200, {'Content-Type': 'text/html'});
