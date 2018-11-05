@@ -80,7 +80,9 @@ module.exports = function(app){
     app.post('/switch', function(req, res){
         appliance.find({rid: "itsHarshRoom"}, function(err, ack){
             if(err) throw err;
+            console.log(ack[0]);
             if(ack[0]){
+                console.log(ack[0].applianceState[0]);
                 switch(req.body.value){
                     case "1": 
                         if(ack[0].applianceState[0])
@@ -107,12 +109,14 @@ module.exports = function(app){
                             ack[0].applianceState[3]=true;
                         break;
                 }
+                console.log(ack[0].applianceState[0]);
             }
+            console.log(ack[0]);
             appliance.updateOne(ack[0],function(err, ack2){
                 if(err) throw err;
-            res.writeHead(200, {'Content-Type': 'text/html'});
-            var readHtml = fs.createReadStream('./htmlPages/switch.html', 'utf8');
-            readHtml.pipe(res);
+                res.writeHead(200, {'Content-Type': 'text/html'});
+                var readHtml = fs.createReadStream('./htmlPages/switch.html', 'utf8');
+                readHtml.pipe(res);
             });
         }); 
     });
