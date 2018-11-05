@@ -113,7 +113,9 @@ module.exports = function(app){
             }
             appliance.updateOne(ack[0],function(err, ack2){
                 if(err) throw err;
-                res.send(ack2);
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            var readHtml = fs.createReadStream('./htmlPages/switch.html', 'utf8');
+            readHtml.pipe(res);
             });
         }); 
     });
